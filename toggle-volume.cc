@@ -1,6 +1,6 @@
 
 #if false
-    x86_64-w64-mingw32-g++ $0 -lole32 && ./a.exe
+    x86_64-w64-mingw32-g++ $0 -lole32 -static && ./a.exe
     exit
 #endif
 // Above code makes it run as script

@@ -13,6 +13,7 @@
 #include <wrl/client.h> // Include the WRL headers for ComPtr
 #include <stdexcept>
 
+//
 using Microsoft::WRL::ComPtr; // Add a using statement for ComPtr
 
 // Main function

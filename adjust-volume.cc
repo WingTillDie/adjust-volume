@@ -13,6 +13,7 @@
 #include <wrl/client.h> // Include the WRL headers for ComPtr
 #include <stdexcept>
 
+// Smart Pointer
 using Microsoft::WRL::ComPtr; // Add a using statement for ComPtr
 
 bool streq(const char* p_chr_0, const char* p_chr_1) {
@@ -20,8 +21,6 @@ bool streq(const char* p_chr_0, const char* p_chr_1) {
 }
 
 void usage() {
-    // Provide usage information
-    // TODO
     std::string usage =
 R"(Usage: adjust-volume.exe [volume]
 If no volume is specified, it will print the current sound volume.
@@ -32,11 +31,6 @@ If a volume value between 0 and 1 is provided, it will set the sound volume.
 
 int main(int argc, char* argv[])
 {
-    // from enum import Enum
-    // Program_mode = Enum('Program_mode', [ 'set_sound_volume', 'get_sound_volume'] )
-
-    // TODO enum class
-    // enum class Program_mode { set_sound_volume, get_sound_volume} program_mode
     enum class Program_mode {
         unknown,
         set_sound_volume,
@@ -61,7 +55,6 @@ int main(int argc, char* argv[])
             program_mode = Program_mode::set_sound_volume;
             volume = strtof(argv[1], NULL);
 
-            // TODO test
             // Verify valid input range 0~1
             if ( ! ( 0.f <= volume && volume <= 1.f ) ) {
                 printf("Invalid volume value. Volume must be between 0 and 1.\n\n");
@@ -91,7 +84,6 @@ int main(int argc, char* argv[])
     // Activate the IAudioEndpointVolume interface
     pDevice->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_ALL, NULL, (void**)&pEndpointVolume);
 
-    // TODO test
     if ( program_mode == Program_mode::get_sound_volume ) {
         // Get the master volume level
         float currentVolume;
@@ -100,15 +92,10 @@ int main(int argc, char* argv[])
         usage();
     }
 
-    // TODO test
     if ( program_mode == Program_mode::set_sound_volume )
         pEndpointVolume->SetMasterVolumeLevelScalar(volume, NULL);
 
     CoUninitialize();
-    
-    // BETTER get current sound volume when no input
-    // BETTER help text ?
-    // BETTER verify valid input range 0~1
 
     return 0;
 }

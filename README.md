@@ -1,2 +1,2 @@
 # toggle-volume
-Toggle sound volume via C++
+Toggle Windows sound volume via C++
